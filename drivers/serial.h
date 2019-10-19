@@ -50,6 +50,9 @@ int serial_is_transmit_fifo_empty(int16 com)
 void serial_write(int16 com, char * s) {
     int i = 0;
     while (s[i]) {
-        serial_write_char(com, s[i]);
+        // Block until buffer is not full
+        while (!serial_is_transmit_fifo_empty(com)) {}
+        outb(SERIAL_DATA_PORT(com), s[i]);
+        i++;
     }
 }
