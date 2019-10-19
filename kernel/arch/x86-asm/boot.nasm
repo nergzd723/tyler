@@ -1,6 +1,5 @@
 KERNEL_STACK_SIZE equ 4096
 extern kmain
-global loader                   ; the entry symbol for ELF
                                 ; 'global' is a directive that includes this
                                 ; symbol in the symbol table. Directives appear
                                 ; at the start of the file. 'global' exports an
@@ -29,11 +28,12 @@ align 4                         ; the code must be 4 byte aligned
                                 ; 'dd' declares initialized data
     dd FLAGS                    ; the flags,
     dd CHECKSUM                 ; and the checksum
-loader:
+_start:
     mov eax, 0xCAFEBABE
+    mov esp, kernel_stack + KERNEL_STACK_SIZE
     jmp kmain
 
-section .bss:                   ; Use the 'bss' section for the stack
-align 4                         ; align at 4 bytes for performance reasons
-kernel_stack:                   ; label points to beginning of memory
-    resb KERNEL_STACK_SIZE      ; reserve stack for the kernel 
+section .bss                    ; Use the 'bss' section for the stack
+    align 4                         ; align at 4 bytes for performance reasons
+    kernel_stack:                   ; label points to beginning of memory
+        resb KERNEL_STACK_SIZE      ; reserve stack for the kernel 
