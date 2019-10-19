@@ -1,5 +1,6 @@
 #include "serial_port.h"
 #include "fbh.h"
+#include "io.h"
 enum output_type {FRAMEBUFFER, LOG};
 
 void write(enum output_type output_device, char * s) {

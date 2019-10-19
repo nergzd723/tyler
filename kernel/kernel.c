@@ -4,6 +4,7 @@
 #include "communication.h"
 #include "serial.h"
 #include "dt.h"
+#include "panic.h"
 
 int kernel_main(){
     clear_screen();
@@ -13,5 +14,6 @@ int kernel_main(){
     write(LOG, "GDT init ");
     initialize_idt();
     log("IDT init ");
+    panic("Just a test ::)");
     while(1) {}
 }
