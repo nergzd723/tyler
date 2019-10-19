@@ -24,7 +24,8 @@
 #define FB_WHITE 15
 
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
-void fb_clear_screen();
-void fb_print(char* s, unsigned char fg, unsigned char bg);
+void clear_screen();
+void fb_write(char* s, unsigned char fg, unsigned char bg);
+void move_cursor(unsigned short row, unsigned short col);
 
 #endif /* INCLUDE_FBH_H */
