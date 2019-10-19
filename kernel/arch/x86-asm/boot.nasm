@@ -1,3 +1,4 @@
+global loader
 extern kmain
                                 ; 'global' is a directive that includes this
                                 ; symbol in the symbol table. Directives appear
@@ -11,9 +12,7 @@ MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
                                 ; whereever 'MAGIC_NUMBER' shows up, in the code,
                                 ; it will be replaced with 0x1BADB002
 
-
 FLAGS        equ 0x0            ; multiboot flags
-
 CHECKSUM     equ -MAGIC_NUMBER  ; calculate the checksum
 KERNEL_STACK_SIZE equ 4096
                                 ; (magic number + checksum + flags should equal 0)
