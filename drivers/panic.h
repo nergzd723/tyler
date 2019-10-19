@@ -1,7 +1,7 @@
 #ifndef INCLUDE_PANIC_H
 #define INCLUDE_PANIC_H
 #ifndef INCLUDE_COMMUNICATION_H
-#include "communication.h"
+#include "usercomm.h"
 #endif
 
 void panic(char* panicmessage){
