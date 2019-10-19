@@ -21,7 +21,7 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
 }
 
 //clears screen
-void fb_clear_screen()
+void clear_screen()
 {
     for (int i = 0; i < FB_CELLS; i++){
         fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);

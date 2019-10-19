@@ -2,6 +2,7 @@
 // Copyright nergzd723, 2019
 #include "fb.h"
 #include "communication.h"
+#include "serial_port.h"
 
 int kernel_main(){
     clear_screen();
