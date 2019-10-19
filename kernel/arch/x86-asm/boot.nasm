@@ -29,8 +29,8 @@ align 4                         ; the code must be 4 byte aligned
                                 ; 'dd' declares initialized data
     dd FLAGS                    ; the flags,
     dd CHECKSUM                 ; and the checksum
-
 loader:
+    mov eax, 0xCAFEBABE
     jmp kmain
 
 section .bss:                   ; Use the 'bss' section for the stack
