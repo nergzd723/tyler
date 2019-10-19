@@ -1,4 +1,3 @@
-KERNEL_STACK_SIZE equ 4096
 extern kmain
                                 ; 'global' is a directive that includes this
                                 ; symbol in the symbol table. Directives appear
@@ -16,8 +15,9 @@ MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
 FLAGS        equ 0x0            ; multiboot flags
 
 CHECKSUM     equ -MAGIC_NUMBER  ; calculate the checksum
+KERNEL_STACK_SIZE equ 4096
                                 ; (magic number + checksum + flags should equal 0)
-section .text:                  ; start of the text (code) section
+section .text                   ; start of the text (code) section
                                 ; .data is for initialized variable
                                 ; .bss is for uninitialized variables
 align 4                         ; the code must be 4 byte aligned
