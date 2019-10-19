@@ -20,12 +20,18 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
     fb[i + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
 }
 
+
+//fills screen with some color
+void fill_screen(unsigned char color){
+    for (int i = 0; i < FB_CELLS; i++){
+        fb_write_cell(i, ' ', color, color);
+    }
+}
+
 //clears screen
 void clear_screen()
 {
-    for (int i = 0; i < FB_CELLS; i++){
-        fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
-    }
+    fill_screen(FB_BLACK);
 }
 
 //moves cursor to specific pos, needed for newlines and more

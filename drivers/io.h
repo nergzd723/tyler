@@ -7,4 +7,9 @@
 #define FB_LOW_BYTE_COMMAND     15
 void outb(unsigned short port, unsigned char data);
 unsigned char inb(unsigned short port);
+//load GDT
+void lgdt(void* gdt);
+void halt();
+void load_idt(void * idt);
+void interrupt(uint32_t interrupt_number);
 #endif

@@ -13,6 +13,12 @@ void write(enum output_type output_device, char * s) {
   }
 }
 
+//printf to screen
 void printf(char * s) {
   write(FRAMEBUFFER, s);
+}
+
+//output directly to serial
+void log(char * s){
+    write(LOG, s);
 }
