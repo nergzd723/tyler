@@ -1,4 +1,8 @@
+#ifndef INCLUDE_PANIC_H
+#define INCLUDE_PANIC_H
+#ifndef INCLUDE_COMMUNICATION_H
 #include "communication.h"
+#endif
 
 void panic(char* panicmessage){
     fill_screen(FB_LIGHT_BLUE);
@@ -9,3 +13,4 @@ void panic(char* panicmessage){
     write(FRAMEBUFFER, panicmessage);
     halt();
 }
+#endif
