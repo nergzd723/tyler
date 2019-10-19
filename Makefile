@@ -3,7 +3,6 @@ obj = boot.o kernel.o
 cc = i686-x0r3d-elf
 flags = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Idrivers
 TDIR = ~/i686-x0r3d-elf/bin/
-.PHONY all:
 all: kernel mod link
 
 kernel:
