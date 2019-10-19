@@ -8,5 +8,6 @@ int kernel_main(){
     fb_write_cell(2, 'L', FB_GREEN, FB_DARK_GREY);
     fb_write_cell(3, 'E', FB_GREEN, FB_DARK_GREY);
     fb_write_cell(4, 'R', FB_GREEN, FB_DARK_GREY);
+    fb_print("Tyler has been booted", FB_LIGHT_BLUE, FB_LIGHT_GREY);
     while(1) {}
 }
