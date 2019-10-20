@@ -1,8 +1,6 @@
 #include "fbh.h"
 #include "io.h"
 
-enum output_type {FRAMEBUFFER, LOG};
-
 // Start of memory that maps to the fram buffer
 char *fb = (char *) 0x000B8000;
 /** fb_write_cell:
@@ -69,10 +67,6 @@ void move_cursor(unsigned short row, unsigned short col) {
   move_cursor_to_pos(row*FB_COLS + col);
 }
 
-void printf(const char* message)
-{
-    write(SCREEN, message);
-}
 //prints something to framebuffer
 void fb_write(char* s, unsigned char fg, unsigned char bg){
     int i = 0;
