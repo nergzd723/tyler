@@ -18,7 +18,7 @@ common_interrupt_handler:               ; the common parts of the generic interr
   push    esp
   push    ebp
   ; call the C function
-  ret
+  iret
   call    interrupt_handler
   ; restore the registers
   pop    ebp
