@@ -1,9 +1,9 @@
 #ifndef INCLUDE_FBH_H
 #define INCLUDE_FBH_H
 #define FB_COLS 80
-
+#include "types.h"
 #define FB_ROWS 25
-
+typedef enum output_t {SCREEN, LOG} FILE;
 #define FB_CELLS FB_COLS * FB_ROWS
 
 #define FB_BLACK 0
