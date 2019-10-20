@@ -28,5 +28,7 @@ void clear_screen();
 void fb_write(char* s);
 void move_cursor(unsigned short row, unsigned short col);
 void fill_screen(unsigned char color);
+void print_int8(FILE stream, uint8_t data)
+void print_uint32(FILE stream, uint32_t data);
 
 #endif /* INCLUDE_FBH_H */
