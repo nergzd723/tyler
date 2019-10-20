@@ -14,8 +14,8 @@ int kernel_main(){
     write(LOG, "GDT init ");
     initialize_idt();
     log("IDT init ");
-    interrupt(49)
-    log("RETURNED?")
+    interrupt(49);
+    log("RETURNED?");
     checkmate(FB_GREEN, FB_LIGHT_RED);
     while(1) {}
 }
