@@ -69,7 +69,7 @@ void move_cursor(unsigned short row, unsigned short col) {
 }
 
 //prints something to framebuffer
-void fb_write(char* s, unsigned char fg, unsigned char bg){
+void fb_write(char* s){
     int i = 0;
     while(s[i]){
         fb_write_byte(s[i]);
