@@ -31,6 +31,7 @@ void checkmate(uint8_t color, uint8_t color2){
         fb_write_cell(i, ' ', color, color);
         i++;
         fb_write_cell(i, ' ', color2, color2);
+        i++;
     }
 }
 
