@@ -29,7 +29,7 @@ void checkmate(uint8_t color, uint8_t color2){
     int n = 0;
     while(i < FB_CELLS)
     {
-        if (n == FB_COLS){
+        if (n > FB_COLS){
             n = 0;
             i++;
         }
