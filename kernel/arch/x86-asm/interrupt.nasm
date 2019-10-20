@@ -1,5 +1,5 @@
-global interrupt_handler
-interrupt_handler:
+global interrupt_handlerasm
+interrupt_handlerasm:
     mov eax, 0xDEADBEEF
     jmp $
     

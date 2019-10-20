@@ -1,5 +1,8 @@
 #include "fbh.h"
 #include "io.h"
+
+enum output_type {FRAMEBUFFER, LOG};
+
 // Start of memory that maps to the fram buffer
 char *fb = (char *) 0x000B8000;
 /** fb_write_cell:
@@ -12,6 +15,8 @@ char *fb = (char *) 0x000B8000;
  *  @param bg The background color
  */
 
+uint16_t cursor_pos = 0;
+
 //writes fb cell
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg)
 {
@@ -20,6 +25,16 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
     fb[i + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
 }
 
+//fills screen in beautiful way
+void checkmate(uint8_t color, uint8_t color2){
+    int i = 0;
+    while(i < FB_CELLS)
+    {
+        fb_write_cell(i, ' ', color, color);
+        i++;
+        fb_write_cell(i, ' ', color2, color2);
+    }
+}
 
 //fills screen with some color
 void fill_screen(unsigned char color){
@@ -27,6 +42,12 @@ void fill_screen(unsigned char color){
         fb_write_cell(i, ' ', color, color);
     }
 }
+
+void fb_write_byte(uint8_t b) {
+  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
+  cursor_pos++;
+  if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
 
 //clears screen
 void clear_screen()
@@ -48,11 +69,15 @@ void move_cursor(unsigned short row, unsigned short col) {
   move_cursor_to_pos(row*FB_COLS + col);
 }
 
+void printf(const char* message)
+{
+    write(SCREEN, message);
+}
 //prints something to framebuffer
 void fb_write(char* s, unsigned char fg, unsigned char bg){
     int i = 0;
     while(s[i]){
-        fb_write_cell(i, s[i], fg, bg);
+        fb_write_byte(s[i]);
         i++;
     }
 }

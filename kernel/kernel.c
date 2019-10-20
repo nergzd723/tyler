@@ -14,6 +14,6 @@ int kernel_main(){
     write(LOG, "GDT init ");
     initialize_idt();
     log("IDT init ");
-    panic("Just a test ::)");
+    checkmate(FB_GREEN, FB_LIGHT_RED);
     while(1) {}
 }
