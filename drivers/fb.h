@@ -26,12 +26,19 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
 //fills screen in beautiful way
 void checkmate(uint8_t color, uint8_t color2){
     int i = 0;
+    int n = 0;
     while(i < FB_CELLS)
     {
+        if (n == FB_COLS){
+            n = 0;
+            i++;
+        }
         fb_write_cell(i, ' ', color, color);
         i++;
+        n++;
         fb_write_cell(i, ' ', color2, color2);
         i++;
+        n++;
     }
 }
 
