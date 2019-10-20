@@ -1,5 +1,6 @@
 #include "io.h"
 #include "types.h"
+#include "irq.h"
 
 // a pointer to the global descriptor table
 // passed by reference to the LGDT instruction
@@ -74,7 +75,7 @@ void initialize_idt() {
   idt_description_structure.size = sizeof(idt) - 1;
   idt_description_structure.offset = (uint32_t) idt;
 
-  uint32_t interrupt_handler_address = (uint32_t) &interrupt_handler_address;
+  uint32_t interrupt_handler_address = (uint32_t) &interrupt_handler_49;
   uint16_t offset_0_15 = interrupt_handler_address & 0x0000FFFF;
   uint16_t offset_16_31 = interrupt_handler_address >> 16;
   uint16_t selector = KERNAL_CODE_SEGMENT_SELECTOR;
