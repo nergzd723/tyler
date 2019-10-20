@@ -49,6 +49,7 @@ void move_cursor_to_pos(unsigned short pos)
     outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
     outb(FB_DATA_PORT,    pos & 0x00FF);
 }
+
 void fb_write_byte(uint8_t b) {
   fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
   cursor_pos++;

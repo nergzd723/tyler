@@ -25,7 +25,7 @@
 
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
 void clear_screen();
-void fb_write(char* s, unsigned char fg, unsigned char bg);
+void fb_write(char* s);
 void move_cursor(unsigned short row, unsigned short col);
 void fill_screen(unsigned char color);
 

@@ -15,7 +15,7 @@ void write(enum output_type output_device, char * s) {
 }
 
 //printf to screen
-void printf(char * s) {
+void printf(const char * s) {
   write(FRAMEBUFFER, s);
 }
 
