@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "serial.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -41,18 +41,6 @@ void fill_screen(unsigned char color){
     }
 }
 
-void fb_write_byte(uint8_t b) {
-  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
-  cursor_pos++;
-  if (cursor_pos < FB_CELLS) {
-    move_cursor_to_pos(cursor_pos);
-
-//clears screen
-void clear_screen()
-{
-    fill_screen(FB_BLACK);
-}
-
 //moves cursor to specific pos, needed for newlines and more
 void move_cursor_to_pos(unsigned short pos)
 {
@@ -60,6 +48,19 @@ void move_cursor_to_pos(unsigned short pos)
     outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
     outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
     outb(FB_DATA_PORT,    pos & 0x00FF);
+}
+void fb_write_byte(uint8_t b) {
+  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
+  cursor_pos++;
+  if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
+  }
+}
+
+//clears screen
+void clear_screen(void)
+{
+    fill_screen(FB_BLACK);
 }
 
 //more dedicated cursor move, to specific row and column
