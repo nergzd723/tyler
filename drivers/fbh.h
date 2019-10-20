@@ -1,7 +1,6 @@
 #ifndef INCLUDE_FBH_H
 #define INCLUDE_FBH_H
 #define FB_COLS 80
-#include "types.h"
 #define FB_ROWS 25
 typedef enum output_t {SCREEN, LOG} FILE;
 #define FB_CELLS FB_COLS * FB_ROWS
@@ -28,7 +27,7 @@ void clear_screen();
 void fb_write(char* s);
 void move_cursor(unsigned short row, unsigned short col);
 void fill_screen(unsigned char color);
-void print_int8(FILE stream, uint8_t data)
-void print_uint32(FILE stream, uint32_t data);
+void print_int8(FILE stream, unsigned char data)
+void print_uint32(FILE stream, unsigned long data);
 
 #endif /* INCLUDE_FBH_H */
