@@ -17,6 +17,14 @@ char *fb = (char *) 0x000B8000;
 
 uint16_t cursor_pos = 0;
 
+void fb_write_byte(uint8_t b) {
+  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
+  cursor_pos++;
+  if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
+  }
+}
+
 write_byte_t write_byte_function(FILE stream) {
   switch (stream) {
     case (SCREEN):
@@ -69,13 +77,6 @@ void move_cursor_to_pos(unsigned short pos)
     outb(FB_DATA_PORT,    pos & 0x00FF);
 }
 
-void fb_write_byte(uint8_t b) {
-  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
-  cursor_pos++;
-  if (cursor_pos < FB_CELLS) {
-    move_cursor_to_pos(cursor_pos);
-  }
-}
 void print_int8(FILE stream, uint8_t data) {
   write_byte_t write_byte = write_byte_function(stream);
   uint8_t half_byte;
