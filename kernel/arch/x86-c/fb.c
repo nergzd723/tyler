@@ -1,5 +1,6 @@
 #include "fbh.h"
 #include "io.h"
+#include "serial_port.h"
 
 // Start of memory that maps to the fram buffer
 char *fb = (char *) 0x000B8000;
@@ -85,11 +86,11 @@ void fb_write(char* s){
         i++;
     }
 }
-
 typedef void (*write_byte_t)(uint8_t);
+
 write_byte_t write_byte_function(FILE stream) {
   switch (stream) {
-    case (FRAMEBUFFER):
+    case (SCREEN):
       return fb_write_byte;
     case (LOG):
       return serial_write_byte;
@@ -104,16 +105,7 @@ int fprintf (FILE stream, const char * format, ...) {
   }
   return i;
 }
-void print_int8(enum stream, uint8_t data) {
-  write_byte_t write_byte = write_byte_function(stream);
-  uint8_t half_byte;
-  write_byte('0');
-  write_byte('x');
-  for (int i = 1; i >=0; i--) {
-    half_byte = (data >> (4*i)) & 0x0F;
-    print_half_byte(write_byte, half_byte)
-  }
-}
+
 void print_uint32(FILE stream, uint32_t data) {
   write_byte_t write_byte = write_byte_function(stream);
   uint8_t half_byte;
@@ -179,3 +171,4 @@ void print_half_byte(write_byte_t write_byte, uint8_t half_byte)
     }
   }
 }
+

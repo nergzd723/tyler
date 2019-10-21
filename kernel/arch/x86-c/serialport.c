@@ -9,6 +9,12 @@
 #define SERIAL_LINE_STATUS_PORT(base)   (base + 5)
 #define SERIAL_LINE_ENABLE_DLAB         0x80
 
+void serial_write_byte(uint8_t b) {
+    // Block until buffer is not full
+    while (!serial_is_transmit_fifo_empty(SERIAL_COM1_BASE)) {}
+    outb(SERIAL_DATA_PORT(SERIAL_COM1_BASE), b);
+}
+
 void serial_configure_baud_rate(int16 com, int16 divisor)
 {
     outb(SERIAL_LINE_COMMAND_PORT(com),

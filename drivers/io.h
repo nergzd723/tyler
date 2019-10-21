@@ -12,5 +12,6 @@ unsigned char inb(unsigned short port);
 void lgdt(void* gdt);
 void halt();
 void load_idt(void * idt);
+void panic(char* panicmessage);
 void interrupt(uint32_t interrupt_number);
 #endif
