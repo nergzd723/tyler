@@ -18,8 +18,7 @@ gdt_end:
 gdtr_descr:
   dw gdt_end - gdt_start - 1
   dd gdt_start
-bits 16
-org 0x7e00
+
 global enterpm
 enterpm:            ; loaded at phys addr 0x7e00
     xor ax, ax
