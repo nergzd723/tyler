@@ -2,7 +2,7 @@
 #include "io.h"
 #include "serial_port.h"
 #include "types.h"
-
+typedef void (*write_byte_t)(uint8_t);
 // Start of memory that maps to the fram buffer
 char *fb = (char *) 0x000B8000;
 /** fb_write_cell:
@@ -105,7 +105,6 @@ void fb_write(char* s){
         i++;
     }
 }
-typedef void (*write_byte_t)(uint8_t);
 
 int fprintf (FILE stream, const char * format, ...) {
   write_byte_t write_byte = write_byte_function(stream);
