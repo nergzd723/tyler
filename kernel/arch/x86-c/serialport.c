@@ -11,7 +11,7 @@
 
 void serial_write_byte(unsigned char b) {
     // Block until buffer is not full
-    while (!serial_is_transmit_fifo_empty(SERIAL_COM1_BASE)) {}
+    while (!(inb(SERIAL_LINE_STATUS_PORT(SERIAL_COM1_BASE)) & 0x20)) {}
     outb(SERIAL_DATA_PORT(SERIAL_COM1_BASE), b);
 }
 
@@ -45,10 +45,6 @@ void serial_init(unsigned short com) {
     serial_configure_line(com);
     serial_configure_fifo(com);
     serial_configure_modem(com);
-}
-
-int serial_is_transmit_fifo_empty(com){
-    return inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20;
 }
 
 void serial_write(unsigned short com, char * s) {

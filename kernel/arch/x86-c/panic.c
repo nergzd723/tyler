@@ -1,4 +1,5 @@
 #include "fbh.h"
+#include "io.h"
 void panic(char* panicmessage){
     fill_screen(FB_LIGHT_BLUE);
     write(SCREEN, "\n\n\n\n\nPanicked successfully!\n\n\n");
