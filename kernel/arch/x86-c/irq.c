@@ -1,6 +1,8 @@
 #include "irq.h"
 #include "fbh.h"
 #include "io.h"
+#include "pic.h"
+#include "kb.h"
 
 void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t interrupt_number)
 {
