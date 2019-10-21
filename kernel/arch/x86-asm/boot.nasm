@@ -29,7 +29,7 @@ align 4                         ; the code must be 4 byte aligned
 loader:
     mov eax, 0xCAFEBABE
     mov esp, kernel_stack + KERNEL_STACK_SIZE
-    ; disable interrupts!!!!!!!!!!
+    ; disable interrupts!!!!!!!!!
     cli
     jmp kernel_main
 section .bss                        ; Use the 'bss' section for the stack

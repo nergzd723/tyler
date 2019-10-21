@@ -6,6 +6,7 @@
 #include "types.h"
 #include "dt.h"
 #include "irq.h"
+#include "pic.h"
 
 int kernel_main(){
     clear_screen();
@@ -15,7 +16,7 @@ int kernel_main(){
     write(LOG, "GDT init ");
     initialize_idt();
     log("IDT init ");
-    enable_keyboard_interrupts();
+    pic_init();
     checkmate(FB_GREEN, FB_LIGHT_RED);
     while(1) {}
     return 1;
