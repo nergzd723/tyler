@@ -1,11 +1,10 @@
 #include "serial_port.h"
 #include "fbh.h"
 #include "io.h"
-enum output_type {FRAMEBUFFER, LOG};
 
-void write(enum output_type output_device, char * s) {
+void write(FILE output_device, char * s) {
   switch (output_device) {
-    case (FRAMEBUFFER):
+    case (SCREEN):
       fb_write(s);
       break;
     case (LOG):
@@ -16,7 +15,7 @@ void write(enum output_type output_device, char * s) {
 
 //printf to screen
 void printf(char * s) {
-  write(FRAMEBUFFER, s);
+  write(SCREEN, s);
 }
 
 //output directly to serial
