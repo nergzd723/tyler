@@ -21,6 +21,5 @@ struct stack_state {
 } __attribute__((packed));
 
 void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t interrupt);
-void interrupt_handler_49();
 void enable_keyboard_interrupts();
 #endif
