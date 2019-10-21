@@ -129,15 +129,6 @@ void fill_screen(unsigned char color){
     }
 }
 
-//moves cursor to specific pos, needed for newlines and more
-void move_cursor_to_pos(unsigned short pos)
-{
-    outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
-    outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
-    outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
-    outb(FB_DATA_PORT,    pos & 0x00FF);
-}
-
 void print_int8(FILE stream, uint8_t data) {
   write_byte_t write_byte = write_byte_function(stream);
   uint8_t half_byte;
