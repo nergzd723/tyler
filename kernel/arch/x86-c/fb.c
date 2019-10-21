@@ -25,7 +25,7 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
 }
 
 //fills screen in beautiful way
-void checkmate(uint8_t color, uint8_t color2){
+void checkmate(unsigned short color, unsigned short color2){
     int i = 0;
     int n = 0;
     while(i < FB_CELLS)
@@ -105,18 +105,6 @@ int fprintf (FILE stream, const char * format, ...) {
   }
   return i;
 }
-
-void print_uint32(FILE stream, uint32_t data) {
-  write_byte_t write_byte = write_byte_function(stream);
-  uint8_t half_byte;
-  write_byte('0');
-  write_byte('x');
-  for (int i = 7; i >=0; i--) {
-    half_byte = (data >> (4*i)) & 0x0F;
-    print_half_byte(write_byte, half_byte);
-  }
-}
-
 void print_half_byte(write_byte_t write_byte, uint8_t half_byte)
 {
     switch (half_byte) {
@@ -169,6 +157,17 @@ void print_half_byte(write_byte_t write_byte, uint8_t half_byte)
         write_byte('F');
         break;
     }
+}
+
+void print_uint32(FILE stream, uint32_t data) 
+{
+  write_byte_t write_byte = write_byte_function(stream);
+  uint8_t half_byte;
+  write_byte('0');
+  write_byte('x');
+  for (int i = 7; i >=0; i--) {
+    half_byte = (data >> (4*i)) & 0x0F;
+    print_half_byte(write_byte, half_byte);
   }
 }
 

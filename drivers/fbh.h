@@ -31,6 +31,6 @@ void move_cursor(unsigned short row, unsigned short col);
 void fill_screen(unsigned char color);
 void print_int8(FILE stream, unsigned char data);
 void print_uint32(FILE stream, unsigned long data);
-void checkmate(unsigned short color1, unsigned short color2);
+void checkmate(unsigned short color, unsigned short color2);
 
 #endif /* INCLUDE_FBH_H */
