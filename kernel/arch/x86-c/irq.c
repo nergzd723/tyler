@@ -4,7 +4,7 @@
 #include "pic.h"
 #include "kb.h"
 #include "types.h"
-#define KEYBOARD 0x00000008                  
+#define KEYBOARD 0x00000009
 void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t interrupt_number)
 {
   log("interrupt_handler()\n");

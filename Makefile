@@ -18,4 +18,7 @@ all:
 	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/descriptors.c -o desc.o $(flags)
 	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/comm.c -o comm.o $(flags)
 	$(TDIR)$(cc)-gcc -T kernel/linker.ld -o tyler.bin $(obj) -lgcc -ffreestanding -O2 -nostdlib
-
+	mkdir -p isodir/boot/grub
+	cp tyler.bin isodir/boot/myos.bin
+	cp grub.cfg isodir/boot/grub/grub.cfg
+	grub-mkrescue -o myos.iso isodir
