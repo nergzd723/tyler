@@ -51,7 +51,7 @@ void serial_write(int16 com, char * s) {
     int i = 0;
     while (s[i]) {
         // Block until buffer is not full
-        while (!inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20) {}
+        while (!(inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20)) {}
         outb(SERIAL_DATA_PORT(com), s[i]);
         i++;
     }
