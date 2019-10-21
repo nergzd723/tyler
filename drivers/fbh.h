@@ -3,8 +3,6 @@
 #define FB_COLS 80
 #define FB_ROWS 25
 
-typedef enum output_t {SCREEN, LOG} FILE;
-
 #define FB_CELLS FB_COLS * FB_ROWS
 
 #define FB_BLACK 0
