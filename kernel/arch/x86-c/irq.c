@@ -10,7 +10,7 @@ void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t 
   log("interrupt_handler()\n");
   if (cpu.eax) {}; // Avoid unused parameter error
   switch(interrupt_number) {
-    case(0x00000009):
+    case(0x00000008):
       consume_scan_code();
       pic_acknowledge(interrupt_number);
       break;
