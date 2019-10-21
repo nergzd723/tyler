@@ -66,7 +66,16 @@ void fb_write_byte(uint8_t b) {
     move_cursor_to_pos(cursor_pos);
   }
 }
-
+void print_int8(FILE stream, uint8_t data) {
+  write_byte_t write_byte = write_byte_function(stream);
+  uint8_t half_byte;
+  write_byte('0');
+  write_byte('x');
+  for (int i = 1; i >=0; i--) {
+    half_byte = (data >> (4*i)) & 0x0F;
+    print_half_byte(write_byte, half_byte);
+  }
+}
 //clears screen
 void clear_screen(void)
 {
