@@ -16,6 +16,67 @@ char *fb = (char *) 0x000B8000;
  */
 
 uint16_t cursor_pos = 0;
+void print_half_byte(write_byte_t write_byte, uint8_t half_byte)
+{
+    switch (half_byte) {
+      case 0x0:
+        write_byte('0');
+        break;
+      case 0x1:
+        write_byte('1');
+        break;
+      case 0x2:
+        write_byte('2');
+        break;
+      case 0x3:
+        write_byte('3');
+        break;
+      case 0x4:
+        write_byte('4');
+        break;
+      case 0x5:
+        write_byte('5');
+        break;
+      case 0x6:
+        write_byte('6');
+        break;
+      case 0x7:
+        write_byte('7');
+        break;
+      case 0x8:
+        write_byte('8');
+        break;
+      case 0x9:
+        write_byte('9');
+        break;
+      case 0xA:
+        write_byte('A');
+        break;
+      case 0xB:
+        write_byte('B');
+        break;
+      case 0xC:
+        write_byte('C');
+        break;
+      case 0xD:
+        write_byte('D');
+        break;
+      case 0xE:
+        write_byte('E');
+        break;
+      case 0xF:
+        write_byte('F');
+        break;
+    }
+}
+
+void move_cursor_to_pos(unsigned short pos)
+{
+  outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
+  outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
+  outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
+  outb(FB_DATA_PORT,    pos & 0x00FF);
+}
 
 void fb_write_byte(uint8_t b) {
   fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
@@ -115,60 +176,6 @@ int fprintf (FILE stream, const char * format, ...) {
     i++;
   }
   return i;
-}
-
-void print_half_byte(write_byte_t write_byte, uint8_t half_byte)
-{
-    switch (half_byte) {
-      case 0x0:
-        write_byte('0');
-        break;
-      case 0x1:
-        write_byte('1');
-        break;
-      case 0x2:
-        write_byte('2');
-        break;
-      case 0x3:
-        write_byte('3');
-        break;
-      case 0x4:
-        write_byte('4');
-        break;
-      case 0x5:
-        write_byte('5');
-        break;
-      case 0x6:
-        write_byte('6');
-        break;
-      case 0x7:
-        write_byte('7');
-        break;
-      case 0x8:
-        write_byte('8');
-        break;
-      case 0x9:
-        write_byte('9');
-        break;
-      case 0xA:
-        write_byte('A');
-        break;
-      case 0xB:
-        write_byte('B');
-        break;
-      case 0xC:
-        write_byte('C');
-        break;
-      case 0xD:
-        write_byte('D');
-        break;
-      case 0xE:
-        write_byte('E');
-        break;
-      case 0xF:
-        write_byte('F');
-        break;
-    }
 }
 
 void print_uint32(FILE stream, uint32_t data) 

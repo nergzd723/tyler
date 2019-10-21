@@ -1,5 +1,6 @@
 #include "pic.h"
 #include "io.h"
+#include "irq.h"
 /* The PIC interrupts have ben remapped */
 #define PIC_EOI   0x20    /* End-of-interrupt command code */
 #define PIC1    0x20    /* IO base address for master PIC */
