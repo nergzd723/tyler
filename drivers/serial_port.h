@@ -2,5 +2,5 @@
 
 void serial_init(unsigned short com);
 void serial_write(unsigned short com, char * s);
-void serial_write_byte(unsigned short b);
+void serial_write_byte(unsigned char b);
 
