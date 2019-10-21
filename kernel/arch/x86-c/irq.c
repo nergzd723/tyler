@@ -1,5 +1,7 @@
 #include "irq.h"
 #include "fbh.h"
+#include "io.h"
+
 void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t interrupt)
 {
   log("interrupt_handler()\n");
@@ -44,3 +46,9 @@ void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t 
   log("\n");
   return;
 } 
+
+void enable_keyboard_interrupts() {
+  outb(0x21,0xfd);
+  outb(0xa1,0xff);
+  enable_hardware_interrupts();
+}

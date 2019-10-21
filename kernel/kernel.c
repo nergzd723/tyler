@@ -5,6 +5,7 @@
 #include "serial_port.h"
 #include "types.h"
 #include "dt.h"
+#include "irq.h"
 
 int kernel_main(){
     clear_screen();
@@ -14,8 +15,7 @@ int kernel_main(){
     write(LOG, "GDT init ");
     initialize_idt();
     log("IDT init ");
-    interrupt(49);
-    log("RETURNED?");
+    enable_keyboard_interrupts();
     checkmate(FB_GREEN, FB_LIGHT_RED);
     while(1) {}
     return 1;

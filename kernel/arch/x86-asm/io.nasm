@@ -29,6 +29,11 @@ load_idt:
   lidt[eax]
   ret
 
+global enable_hardware_interrupts
+; enable_hardware_interrupts
+enable_hardware_interrupts:
+  sti
+  
 global interrupt
 interrupt:
   mov eax, [esp+4]
