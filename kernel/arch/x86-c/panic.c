@@ -1,4 +1,3 @@
-#include "usercomm.h"
 #include "fbh.h"
 void panic(char* panicmessage){
     fill_screen(FB_LIGHT_BLUE);

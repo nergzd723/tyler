@@ -21,7 +21,9 @@
 #define FB_LIGHT_MAGENTA 13
 #define FB_LIGHT_BROWN 14
 #define FB_WHITE 15
-
+typedef enum output_t {SCREEN, LOG} FILE;
+void log(char * s);
+void write(enum output_type output_device, char * s);
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
 void clear_screen();
 void fb_write(char* s);
