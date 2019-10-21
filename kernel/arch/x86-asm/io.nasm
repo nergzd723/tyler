@@ -2,7 +2,6 @@ global outb
 global inb
 global halt
 global lgdt
-
 outb:
     mov al, [esp + 8]
     mov dx, [esp + 4]
