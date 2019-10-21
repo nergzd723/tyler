@@ -9,13 +9,13 @@
 #define SERIAL_LINE_STATUS_PORT(base)   (base + 5)
 #define SERIAL_LINE_ENABLE_DLAB         0x80
 
-void serial_write_byte(uint8_t b) {
+void serial_write_byte(unsigned char b) {
     // Block until buffer is not full
     while (!serial_is_transmit_fifo_empty(SERIAL_COM1_BASE)) {}
     outb(SERIAL_DATA_PORT(SERIAL_COM1_BASE), b);
 }
 
-void serial_configure_baud_rate(int16 com, int16 divisor)
+void serial_configure_baud_rate(unsigned short com, unsigned short divisor)
 {
     outb(SERIAL_LINE_COMMAND_PORT(com),
          SERIAL_LINE_ENABLE_DLAB);
@@ -47,17 +47,11 @@ void serial_init(int16 com) {
     serial_configure_modem(com);
 }
 
-int serial_is_transmit_fifo_empty(int16 com)
-{
-    /* 0x20 = 0010 0000 */
-    return inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20;
-}
-
 void serial_write(int16 com, char * s) {
     int i = 0;
     while (s[i]) {
         // Block until buffer is not full
-        while (!serial_is_transmit_fifo_empty(com)) {}
+        while (!inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20) {}
         outb(SERIAL_DATA_PORT(com), s[i]);
         i++;
     }
