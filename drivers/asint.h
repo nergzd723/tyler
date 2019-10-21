@@ -254,4 +254,3 @@ void interrupt_handler_252();
 void interrupt_handler_253();
 void interrupt_handler_254();
 void interrupt_handler_255();
-void enterpm();

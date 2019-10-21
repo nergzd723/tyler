@@ -7,7 +7,6 @@
 #include "dt.h"
 #include "irq.h"
 #include "pic.h"
-#include "asint.h"
 
 int kernel_main(){
     clear_screen();
