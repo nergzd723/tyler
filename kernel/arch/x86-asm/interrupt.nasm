@@ -1563,6 +1563,7 @@ common_interrupt_handler:               ; the common parts of the generic interr
 
   ; return to the code that got interrupted
   iret
+
 gdt_start:
    dd 0
    dd 0
@@ -1586,12 +1587,9 @@ gdtr_descr:
 
 global enterpm
 enterpm:            ; loaded at phys addr 0x7e00
-    xor ax, ax
-    mov ds, ax              ; update data segment
     cli                     ; clear interrupts
     lgdt [gdtr]             ; load GDT from GDTR (see gdt_32.inc)
-    call OpenA20Gate      ; open the A20 gate 
-    call EnablePMode        ; jumps to ProtectedMode
+    iret
 
 OpenA20Gate:
     in al, 0x93         ; switch A20 gate via fast A20 port 92
