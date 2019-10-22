@@ -1606,8 +1606,8 @@ EnablePMode:
     jmp (CODE_DESC - NULL_DESC) : ProtectedMode
 
 NULL_DESC:
-    dd 0            ; null descriptor
-    dd 0
+    dd 08            ; null descriptor
+    dd 08
 
 CODE_DESC:
     dw 0xFFFF       ; limit low
