@@ -360,7 +360,7 @@ void initialize_idt() {
   load_idt(&idt_description_structure);
 }
 
-void kmain() {
+void kernel_main() {
   clear_screen();
   // printf(welcome_string);
   serial_init();
