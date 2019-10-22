@@ -4,7 +4,6 @@
 #include "assembly_interface.h"
 #include "types.h"
 #include "global_descriptor_table.h"
-#include "interrupts.h"
 
 // a pointer to the interrupt descriptor table
 // passed by reference to the LIDT instruction
@@ -289,8 +288,7 @@ void initialize_idt() {
 
   uint16_t selector = KERNAL_CODE_SEGMENT_SELECTOR;
   uint8_t zero = 0x00;
-  uint8_t type_attr = 0b10001110;
-  uint8_t user_type_attr = 0b11101110;
+  uint8_t type_attr = 0x8E;
 
   for (int i = 0; i < 256; i++) {
     uint32_t interrupt_handler_address = interrupt_handler_addresses[i];
@@ -303,8 +301,6 @@ void initialize_idt() {
     idt[i].type_attr = type_attr;
     idt[i].offset_16_31 = offset_16_31;
   }
-
-  idt[INT_SYSCALL].type_attr = user_type_attr;
 
   load_idt(&idt_description_structure);
 }
