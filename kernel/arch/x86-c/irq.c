@@ -1,30 +1,31 @@
-#include "irq.h"
-#include "fbh.h"
-#include "io.h"
+#include "interrupts.h"
+
+#include "assembly_interface.h"
+#include "keyboard.h"
 #include "pic.h"
-#include "kb.h"
-#include "types.h"
-#define KEYBOARD 0x00000009
-void interrupt_handler(struct cpu_state cpu, struct stack_state stack, uint32_t interrupt_number)
-{
-  log("interrupt_handler()\n");
+#include "stdio.h"
+
+#define INT_KEYBOARD 0x00000009
+
+void interrupt_handler(struct cpu_state cpu, uint32_t interrupt_number, uint32_t error_code) {
   if (cpu.eax) {}; // Avoid unused parameter error
+  if (error_code) {
+    log("interrupt_handler() error_code ");
+    print_uint32(LOG, error_code);
+    log("\n");
+  }
+
   switch(interrupt_number) {
-    case(KEYBOARD):
-      consume_scan_code();
-      pic_acknowledge(interrupt_number);
+    case(INT_KEYBOARD):
+      keyboard_interrupt_handler();
       break;
+
     default:
       log("Unhandled Interrupt: ");
       print_uint32(LOG, interrupt_number);
       log("\n");
       break;
   }
-  pic_acknowledge();
-} 
 
-void enable_keyboard_interrupts() {
-  outb(0x21,0xfd);
-  outb(0xa1,0xff);
-  enable_hardware_interrupts();
+  pic_acknowledge();
 }

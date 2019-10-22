@@ -1,11 +1,9 @@
-#include "fbh.h"
-#include "io.h"
+#include "stdio.h"
+#include "assembly_interface.h"
 void panic(char* panicmessage){
-    fill_screen(FB_LIGHT_BLUE);
-    write(SCREEN, "\n\n\n\n\nPanicked successfully!\n\n\n");
-    write(LOG, "Panicked! Error message: ");
-    write(LOG, panicmessage);
-    write(LOG, "\n");
-    write(SCREEN, panicmessage);
-    halt();
+    printf("\n\n\n\n\nPanicked successfully!\n\n\n");
+    printf("Panicked! Error message: ");
+    printf(panicmessage);
+    printf("\n");
+    printf(panicmessage);
 }
