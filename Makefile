@@ -1,5 +1,5 @@
 cmod = aswrite.c
-obj = boot.o pm.o kb.o pic.o kernel.o io.o interrupt.o irq.o fb.o serial.o panic.o desc.o comm.o
+obj = boot.o kb.o pic.o kernel.o io.o interrupt.o irq.o fb.o serial.o panic.o comm.o
 cc = i686-x0r3d-elf
 flags = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Idrivers
 TDIR = ~/i686-x0r3d-elf/bin/
