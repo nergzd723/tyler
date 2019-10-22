@@ -9,4 +9,5 @@ void halt();
 void load_idt(void * idt);
 void panic(char* panicmessage);
 void interrupt(uint32_t interrupt_number);
+void enterpm();
 #endif

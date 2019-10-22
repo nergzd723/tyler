@@ -18,10 +18,12 @@ void kernel_main() {
   log("Initialized serial port.\n");
   initialize_gdt();
   log("Loaded global descriptor table.\n");
+  log("Returned from test interrupt()\n");
+  enterpm();
+  log("Loaded new GDT for protected mode");
+  pic_init();
   initialize_idt();
   log("Loaded interrupt descriptor table.\n");
-  log("Returned from test interrupt()\n");
-  pic_init();
   log("Initialized PIC\n");
   render_pic();
   // Loop forever
