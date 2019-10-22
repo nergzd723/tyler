@@ -2,6 +2,7 @@
 #define INCLUDE_IRQ_H
 #include "types.h"
 void enterpm();
+void ProtectedMode();
 struct cpu_state {
   uint32_t eax;
   uint32_t ebx;

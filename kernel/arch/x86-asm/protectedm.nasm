@@ -67,7 +67,7 @@ gdtr:
     Base dd NULL_DESC   ; base of GDT
 
 bits 32
-
+global ProtectedMode
 ProtectedMode:
     mov     ax, DATA_DESC - NULL_DESC
     mov     ds, ax ; update data segment
