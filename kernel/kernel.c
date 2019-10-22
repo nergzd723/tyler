@@ -21,6 +21,7 @@ void kernel_main() {
   initialize_idt();
   log("Loaded interrupt descriptor table.\n");
   log("Returned from test interrupt()\n");
+  pic_init();
   log("Initialized PIC\n");
   // Loop forever
   // User input is accepted asynchronously via interrupts
