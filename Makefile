@@ -1,5 +1,5 @@
 cmod = aswrite.c
-obj = boot.o kb.o pic.o kernel.o io.o interrupt.o irq.o fb.o serial.o panic.o comm.o
+obj = boot.o gdt.o idt.o kb.o pic.o kernel.o io.o interrupt.o irq.o fb.o serial.o panic.o comm.o
 cc = i686-x0r3d-elf
 flags = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Idrivers
 TDIR = ~/i686-x0r3d-elf/bin/
@@ -8,6 +8,8 @@ all:
 	nasm -f elf kernel/arch/x86-asm/boot.nasm -o boot.o
 	nasm -f elf kernel/arch/x86-asm/assembly_interface.nasm -o io.o
 	nasm -f elf kernel/arch/x86-asm/interrupt.nasm -o interrupt.o
+	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/idt.c -o idt.o $(flags)
+	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/gdt.c -o gdt.o $(flags)
 	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/keyboard.c -o kb.o $(flags)
 	$(TDIR)$(cc)-gcc -c kernel/arch/x86-c/pic.c -o pic.o $(flags)
 	$(TDIR)$(cc)-gcc -c kernel/kernel.c -o kernel.o $(flags)
