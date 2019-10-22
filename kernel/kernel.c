@@ -23,6 +23,7 @@ void kernel_main() {
   log("Returned from test interrupt()\n");
   pic_init();
   log("Initialized PIC\n");
+  render_pic();
   // Loop forever
   // User input is accepted asynchronously via interrupts
   while(1){}
