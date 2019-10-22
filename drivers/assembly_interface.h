@@ -4,7 +4,7 @@
 void outb(unsigned short port, unsigned char data);
 unsigned char inb(unsigned short port);
 //load GDT
-void lgdt(void* gdt);
+void load_gdt(void* gdt);
 void halt();
 void load_idt(void * idt);
 void panic(char* panicmessage);

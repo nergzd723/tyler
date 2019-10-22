@@ -20,12 +20,12 @@ inb:
     in  al, dx              ; read a byte from the I/O port and store it in the al register
     ret
 
-global lgdt
+global load_gdt
 
 ; lgdt - load global descriptor table
 ; stack: [esp + 4] the address of the gdt description structure
 ;        [esp    ] return address
-lgdt:
+load_gdt:
   mov edx, [esp + 4]
   lgdt [edx]
   ret
@@ -52,4 +52,3 @@ global enable_hardware_interrupts
 ; enable_hardware_interrupts
 enable_hardware_interrupts:
   sti
-  
