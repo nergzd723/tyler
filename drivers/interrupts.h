@@ -19,7 +19,7 @@ struct stack_state {
   uint32_t cs;
   uint32_t eflags;
 } __attribute__((packed));
-
+void enable_hardware_interrupts();
 void enable_keyboard_interrupts();
 void interrupt_handler(struct cpu_state cpu, uint32_t interrupt_number, uint32_t error_code);
 
