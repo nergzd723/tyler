@@ -13,7 +13,7 @@
 void pic_init() {
   //outb(PIC1_DATA, 0b11111101); // Only enable keyboard (irc 1)
   //outb(PIC2_DATA, 0b11111111); // Don't enable any interrupts on slave pic (irc 8-15)
-  enable_hardware_interrupts();
+  //enable_hardware_interrupts();
 }
 /** pic_acknowledge:
  *  Acknowledges an interrupt from either PIC 1 or PIC 2.
