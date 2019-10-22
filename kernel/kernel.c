@@ -20,9 +20,7 @@ void kernel_main() {
   log("Loaded global descriptor table.\n");
   initialize_idt();
   log("Loaded interrupt descriptor table.\n");
-  interrupt(49);
   log("Returned from test interrupt()\n");
-  pic_init();
   log("Initialized PIC\n");
   // Loop forever
   // User input is accepted asynchronously via interrupts
