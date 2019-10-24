@@ -27,5 +27,5 @@ void pic_init() {
 void pic_acknowledge()
 {
     log("ASK");
-    //outb(PIC1_COMMAND, PIC_EOI);
+    outb(PIC1_COMMAND, PIC_EOI);
 } 

@@ -22,11 +22,8 @@ void kernel_main() {
   log("Loaded new GDT for protected mode");
   initialize_idt();
   log("Loaded interrupt descriptor table.\n");
-  //pic_init();
+  pic_init();
   log("Initialized PIC\n");
-  log("before hell");
-  enable_hardware_interrupts();
-  log("after hell");
   render_pic();
   // Loop forever
   // User input is accepted asynchronously via interrupts
