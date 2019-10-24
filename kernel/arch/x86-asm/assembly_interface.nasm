@@ -52,4 +52,3 @@ global enable_hardware_interrupts
 ; enable_hardware_interrupts
 enable_hardware_interrupts:
   sti
-  jmp interrupt
