@@ -1,6 +1,7 @@
 #include "pic.h"
 #include "assembly_interface.h"
 #include "interrupts.h"
+#include "stdio.h"
 /* The PIC interrupts have ben remapped */
 #define PIC_EOI   0x20    /* End-of-interrupt command code */
 #define PIC1    0x20    /* IO base address for master PIC */
@@ -11,8 +12,11 @@
 #define PIC2_DATA (PIC2+1)
 
 void pic_init() {
+  log("command 1");
   outb(PIC1_DATA, 0b11111101); // Only enable keyboard (irc 1)
+  log("command 2");
   outb(PIC2_DATA, 0b11111111); // Don't enable any interrupts on slave pic (irc 8-15)
+  log("STI");
   enable_hardware_interrupts();
 }
 /** pic_acknowledge:
@@ -22,5 +26,6 @@ void pic_init() {
  */
 void pic_acknowledge()
 {
+    log("ASK");
     outb(PIC1_COMMAND, PIC_EOI);
 } 
