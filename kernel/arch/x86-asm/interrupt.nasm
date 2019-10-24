@@ -1548,7 +1548,8 @@ common_interrupt_handler:               ; the common parts of the generic interr
 
   ; call the C function
   call    interrupt_handler
-
+  cli
+  hlt
   ; restore the registers
   pop    ebp
   pop    edi
@@ -1590,29 +1591,6 @@ enterpm:            ; loaded at phys addr 0x7e00
 mov   ax, 0
 mov   es, ax
 mov   di, 0x800
- 
-# NULL Descriptor:
-mov   cx, 4                         # Write the NULL descriptor,
-rep   stosw                         # which is 4 zero-words.
- 
-# Code segment descriptor:
-mov   es:[di],   word ptr 0xffff    # limit = 0xffff (since granularity
-                                    # bit is set, this is 4 GB)
-mov   es:[di+2], word ptr 0x0000    # base = 0x0000
-mov   es:[di+4], byte ptr 0x0       # base
-mov   es:[di+5], byte ptr 0x9a      # access = 0x9a (see above)
-mov   es:[di+6], byte ptr 0xcf      # flags + limit = 0xcf (see above)
-mov   es:[di+7], byte ptr 0x00      # base
-add   di, 8
- 
-# Data segment descriptor:
-mov   es:[di],   word ptr 0xffff    # limit = 0xffff (since granularity
-                                    # bit is set, this is 4 GB)
-mov   es:[di+2], word ptr 0x0000    # base = 0x0000
-mov   es:[di+4], byte ptr 0x0       # base
-mov   es:[di+5], byte ptr 0x92      # access = 0x92 (see above)
-mov   es:[di+6], byte ptr 0xcf      # flags + limit = 0xcf (see above)
-mov   es:[di+7], byte ptr 0x00      # base
 
 OpenA20Gate:
     in al, 0x93         ; switch A20 gate via fast A20 port 92

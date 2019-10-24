@@ -23,7 +23,6 @@ void interrupt_handler(struct cpu_state cpu, uint32_t interrupt_number, uint32_t
     default:
       log("Unhandled Interrupt: ");
       print_uint32(LOG, interrupt_number);
-      for(;;);
       log("\n");
       break;
   }
