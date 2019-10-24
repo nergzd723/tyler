@@ -1558,7 +1558,7 @@ common_interrupt_handler:               ; the common parts of the generic interr
   pop    eax
 
   ; do we reeeeally need to restore the esp ?
-  add     esp, 8 ;what if we DO restore it
+  ;add     esp, 8 ;what if we DO restore it
 
   ; return to the code that got interrupted
   iret
