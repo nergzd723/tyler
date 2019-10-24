@@ -1548,8 +1548,6 @@ common_interrupt_handler:               ; the common parts of the generic interr
 
   ; call the C function
   call    interrupt_handler
-  cli
-  hlt
   ; restore the registers
   pop    ebp
   pop    edi
@@ -1559,8 +1557,8 @@ common_interrupt_handler:               ; the common parts of the generic interr
   pop    ebx
   pop    eax
 
-  ; restore the esp
-  add     esp, 8
+  ; do we reeeeally need to restore the esp ?
+  ;add     esp, 8
 
   ; return to the code that got interrupted
   iret
