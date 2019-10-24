@@ -20,10 +20,13 @@ void kernel_main() {
   log("Loaded global descriptor table.\n");
   enterpm();
   log("Loaded new GDT for protected mode");
-  pic_init();
   initialize_idt();
   log("Loaded interrupt descriptor table.\n");
+  //pic_init();
   log("Initialized PIC\n");
+  log("before hell");
+  enable_hardware_interrupts();
+  log("after hell");
   render_pic();
   // Loop forever
   // User input is accepted asynchronously via interrupts
